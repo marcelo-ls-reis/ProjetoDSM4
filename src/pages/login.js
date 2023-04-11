@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, {useState} from 'react';
 import {
   StyleSheet,
@@ -11,9 +12,15 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigation = useNavigation();
+
   const handleLogin = () => {
-    //aqui você pode implementar  a lógica de login
-    console.log(`E-mail: ${email}, Password: ${password}`);
+    console.log(email, password);
+    if(email === 'admin' && password === '123') {
+      navigation.navigate('main');
+    }else {
+      alert('Usuário ou senha inválidos!');
+    }
   };
   return (
     <View style={styles.container}>
@@ -21,14 +28,14 @@ const Login = () => {
         style={styles.input}
         placeholder="E-mail"
         value={email}
-        onChange={setEmail}
+        onChangeText={setEmail}
       />
       <TextInput
         style={styles.input}
         placeholder="Senha"
         secureTextEntry={true} // esconde a senha
         value={email}
-        onChange={setPassword}
+        onChangeText={setPassword}
       />
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Entrar</Text>
@@ -54,9 +61,10 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#3498db',
-    borderRadius: 10,
+    borderRadius: 4,
     width: '80%',
     alignItems: 'center',
+    padding: 10,
   },
   buttonText: {
     color: '#fff',

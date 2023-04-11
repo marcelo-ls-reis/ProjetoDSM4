@@ -31,6 +31,7 @@ export default function Routes() {
           options={{
             title: 'GitHub VIEWER',
             headerTitleAlign: 'center',
+            headerLeft: null,
             headerStyle: {
               backgroundColor: '#3498db',
             },
